@@ -16,7 +16,7 @@ const Rooms = {
           !index.url_key.includes("JKT48_Eve") &&
           !index.url_key.includes("JKT48_Ariel") &&
           !index.url_key.includes("JKT48_Anin") &&
-          !index.url_key.includes("JKT48_Cindy")
+          !index.url_key.includes("JKT48_Shani")
         ) {
           roomList.push(index);
         }
