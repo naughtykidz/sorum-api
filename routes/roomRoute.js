@@ -11,5 +11,6 @@ router.get("/academy", Rooms.getGen10Member);
 router.get("/fan-letters/:roomId", Rooms.getFanLetter);
 router.get("/theater-schedule", Rooms.getTheaterSchedule);
 router.get("/trainee", Rooms.getTrainee);
+router.get("/premium-live", Rooms.getPremiumLive);
 
 module.exports = router;

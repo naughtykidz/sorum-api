@@ -91,6 +91,51 @@ const Rooms = {
     }
   },
 
+  getPremiumLive: async (req, res) => {
+    try {
+      let onLive = [];
+      let roomIsLive = [];
+
+      const response = await fetchService(`${LIVE}/onlives`, res);
+      const data = response.data.onlives;
+
+      // Find Member Live
+      for (let i = 0; i < data.length; i++) {
+        const index = data[i];
+        if (index.genre_name === "Idol" || index.genre_name === "Popularity") {
+          onLive.push(index);
+        }
+      }
+
+      if (onLive.length) {
+        const roomLive = onLive[0].lives;
+
+        roomLive.forEach((item) => {
+          if (
+            item.room_url_key.includes("JKT48") &&
+            item.premium_room_type === 1
+          ) {
+            roomIsLive.push(item);
+          }
+        });
+      }
+
+      if (roomIsLive.length === 0) {
+        res.send({
+          message: "Room Not Live",
+          is_live: false,
+          data: [],
+        });
+      }
+
+      res.send({
+        data: roomIsLive,
+      });
+    } catch (error) {
+      return error;
+    }
+  },
+
   getProfile: async (req, res) => {
     try {
       const { roomId, cookies } = req.params;
