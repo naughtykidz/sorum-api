@@ -49,7 +49,7 @@ const Rooms = {
         const roomLive = onLive[0].lives;
 
         roomLive.forEach((item) => {
-          if (item.room_url_key.includes("JKT48")) {
+          if (item.room_url_key.includes("JKT48") && item.premium_room_type === 0) {
             roomIsLive.push(item);
           }
         });
