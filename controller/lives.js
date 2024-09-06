@@ -7,9 +7,15 @@ const Lives = {
       const { roomId, cookies } = req.params;
       const url = `${LIVE}/streaming_url?room_id=${roomId}`;
 
+      let cookiesData =
+        cookies !==
+        "sr_id=NotAuwTsgRy832prJOCPLeOJeUp_Q065C0mNIuktVAcr41eHmpONf3mqWAUW-VGi"
+          ? cookies
+          : "cookies";
+
       const response = await fetchService(url, res, {
         headers: {
-          Cookie: cookies,
+          Cookie: cookiesData,
         },
       });
       const streamUrl = response.data.streaming_url_list;
@@ -58,7 +64,7 @@ const Lives = {
         },
       });
       const title = titleApi.data.telop;
-      const live_info = infoApi.data
+      const live_info = infoApi.data;
 
       // Destrurct response profile and title
       const profileData = (profile, title) => {
@@ -77,8 +83,8 @@ const Lives = {
           websocket: {
             host: live_info.bcsvr_host,
             key: live_info.bcsvr_key,
-            live_id: live_info.live_id
-          }
+            live_id: live_info.live_id,
+          },
         };
       };
       const data = profileData(profile, title);
