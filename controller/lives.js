@@ -30,9 +30,15 @@ const Lives = {
       const { roomId, cookies } = req.params;
       const url = `${LIVE}/comment_log?room_id=${roomId}`;
 
+      let cookiesData =
+        cookies !==
+        "sr_id=NotAuwTsgRy832prJOCPLeOJeUp_Q065C0mNIuktVAcr41eHmpONf3mqWAUW-VGi"
+          ? cookies
+          : "cookies";
+
       const response = await fetchService(url, res, {
         headers: {
-          Cookie: cookies,
+          Cookie: cookiesData,
         },
       });
       const comments = response.data.comment_log;
